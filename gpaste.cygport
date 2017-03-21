@@ -1,7 +1,7 @@
 inherit gnome2
 
 NAME="gpaste"
-VERSION=3.18.5
+VERSION=3.22.3
 RELEASE=1
 CATEGORY="X11"
 SUMMARY="GTK+ clipboard management system"
@@ -11,8 +11,8 @@ SRC_URI="http://www.imagination-land.org/files/gpaste/gpaste-${VERSION}.tar.xz"
 PATCH_URI="3.18.5-no-undefined.patch"
 
 PKG_NAMES="${NAME}-app-indicator ${NAME}-applet ${NAME}-client ${NAME}-daemon ${NAME}-ui
-	   libgpaste4 libgpaste-devel girepository-GPaste1.0 vala-gpaste1.0"
-libgpaste4_CONTENTS="usr/bin/cyggpaste-4.dll"
+	   libgpaste6 libgpaste-devel girepository-GPaste1.0 vala-gpaste1.0"
+libgpaste6_CONTENTS="usr/bin/cyggpaste-6.dll"
 libgpaste_devel_CONTENTS="
 	usr/include/gpaste/
 	usr/lib/libgpaste.dll.a
@@ -38,8 +38,9 @@ gpaste_applet_CONTENTS="
 gpaste_client_REQUIRES="gpaste-daemon"
 gpaste_client_CONTENTS="
 	usr/bin/gpaste-client.exe
-	usr/bin/gpaste.exe
+	usr/share/bash-completion/completions/gpaste-client
 	usr/share/man/man1/gpaste-client.1*
+	usr/share/zsh/site-functions/_gpaste-client
 "
 gpaste_daemon_CONTENTS="
 	usr/libexec/gpaste/gpaste-daemon.exe
