@@ -1,7 +1,7 @@
 inherit gnome2
 
 NAME="gpaste"
-VERSION=3.22.4
+VERSION=3.24.2
 RELEASE=1
 CATEGORY="X11"
 SUMMARY="GTK+ clipboard management system"
@@ -10,30 +10,13 @@ HOMEPAGE="https://github.com/Keruspe/GPaste"
 SRC_URI="http://www.imagination-land.org/files/gpaste/gpaste-${VERSION}.tar.xz"
 PATCH_URI="3.18.5-no-undefined.patch"
 
-PKG_NAMES="${NAME}-app-indicator ${NAME}-applet ${NAME}-client ${NAME}-daemon ${NAME}-ui
-	   libgpaste6 libgpaste-devel girepository-GPaste1.0 vala-gpaste1.0"
-libgpaste6_CONTENTS="usr/bin/cyggpaste-6.dll"
+PKG_NAMES="${NAME}-client ${NAME}-daemon ${NAME}-ui
+	   libgpaste9 libgpaste-devel girepository-GPaste1.0 vala-gpaste1.0"
+libgpaste9_CONTENTS="usr/bin/cyggpaste-9.dll"
 libgpaste_devel_CONTENTS="
 	usr/include/gpaste/
 	usr/lib/libgpaste.dll.a
 	usr/lib/pkgconfig/gpaste-1.0.pc
-"
-gpaste_app_indicator_REQUIRES="gpaste-daemon"
-gpaste_app_indicator_CONTENTS="
-	etc/xdg/autostart/org.gnome.GPaste.AppIndicator.desktop
-	usr/libexec/gpaste/gpaste-app-indicator.exe
-	usr/share/appdata/org.gnome.GPaste.AppIndicator.appdata.xml
-	usr/share/applications/org.gnome.GPaste.AppIndicator.desktop
-	usr/share/dbus-1/services/org.gnome.GPaste.AppIndicator.service
-"
-gpaste_applet_REQUIRES="gpaste-daemon"
-gpaste_applet_CONTENTS="
-	etc/xdg/autostart/org.gnome.GPaste.Applet.desktop
-	usr/libexec/gpaste/gpaste-applet.exe
-	usr/share/appdata/org.gnome.GPaste.Applet.appdata.xml
-	usr/share/applications/org.gnome.GPaste.Applet.desktop
-	usr/share/dbus-1/services/org.gnome.GPaste.Applet.service
-	usr/share/gnome-control-center/keybindings/42-gpaste.xml
 "
 gpaste_client_REQUIRES="gpaste-daemon"
 gpaste_client_CONTENTS="
@@ -42,6 +25,7 @@ gpaste_client_CONTENTS="
 	usr/share/man/man1/gpaste-client.1*
 	usr/share/zsh/site-functions/_gpaste-client
 "
+gpaste_daemon_OBSOLETES="${NAME}-app-indicator ${NAME}-applet"
 gpaste_daemon_CONTENTS="
 	usr/libexec/gpaste/gpaste-daemon.exe
 	usr/share/dbus-1/services/org.gnome.GPaste.service
@@ -55,6 +39,7 @@ gpaste_ui_CONTENTS="
 	usr/share/appdata/org.gnome.GPaste.Ui.appdata.xml
 	usr/share/applications/org.gnome.GPaste.Ui.desktop
 	usr/share/dbus-1/services/org.gnome.GPaste.Ui.service
+	usr/share/gnome-control-center/keybindings/42-gpaste.xml
 "
 girepository_GPaste1_0_REQUIRES="gpaste-daemon"
 girepository_GPaste1_0_CONTENTS="usr/*/gir*-1.0/GPaste-1.0.*"
@@ -62,9 +47,6 @@ vala_gpaste1_0_CONTENTS="usr/share/vala/vapi/gpaste-1.0.*"
 
 
 CYGCONF_ARGS="
-	--enable-applet
-	--enable-unity
-	--enable-legacy-cli
 	--disable-gnome-shell-extension
 "
 
