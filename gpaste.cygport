@@ -1,7 +1,7 @@
 inherit gnome2
 
 NAME="gpaste"
-VERSION=3.24.2
+VERSION=3.26.0
 RELEASE=1
 CATEGORY="X11"
 SUMMARY="GTK+ clipboard management system"
@@ -36,10 +36,10 @@ gpaste_daemon_CONTENTS="
 gpaste_ui_REQUIRES="gpaste-daemon"
 gpaste_ui_CONTENTS="
 	usr/libexec/gpaste/gpaste-ui.exe
-	usr/share/appdata/org.gnome.GPaste.Ui.appdata.xml
 	usr/share/applications/org.gnome.GPaste.Ui.desktop
 	usr/share/dbus-1/services/org.gnome.GPaste.Ui.service
 	usr/share/gnome-control-center/keybindings/42-gpaste.xml
+	usr/share/metainfo/org.gnome.GPaste.Ui.appdata.xml
 "
 girepository_GPaste1_0_REQUIRES="gpaste-daemon"
 girepository_GPaste1_0_CONTENTS="usr/*/gir*-1.0/GPaste-1.0.*"
